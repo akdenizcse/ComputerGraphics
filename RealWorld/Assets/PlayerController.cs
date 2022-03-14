@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     public float MovementSpeed =1;
     public float Gravity = 9.8f;
     private float velocity = 0;
+	
+	public float jumpSpeed = 2.0f;
+	private Vector3 movingDirection = Vector3.zero;
+	
 
     private Camera cam;
 
@@ -32,5 +36,26 @@ public class PlayerController : MonoBehaviour
             velocity -= Gravity * Time.deltaTime;
             characterController.Move(new Vector3(0, velocity, 0));
         }
+		// Running
+		if (Input.GetKey(KeyCode.LeftShift)) {
+ 
+            MovementSpeed = 4;
+            print ("Running");
+ 
+        } else {
+ 
+            MovementSpeed = 1;
+            print ("Not Running");
+ 
+        }
+		// Jumping
+		
+		
+		if (characterController.isGrounded && Input.GetButton("Jump")) {
+			movingDirection.y = jumpSpeed;
+		}
+		movingDirection.y -= Gravity * Time.deltaTime;
+		characterController.Move(movingDirection * Time.deltaTime);
+		
     }
 }
