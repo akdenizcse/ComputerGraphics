@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Assets\CameraChange.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\BuildSystem.cs" />
+    <Compile Include="Assets\MenuScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

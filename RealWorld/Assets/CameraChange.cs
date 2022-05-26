@@ -9,25 +9,17 @@ public class CameraChange : MonoBehaviour
     public GameObject FirstCam;
     public int CamMode;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Camera"))
+        if (Input.GetButtonDown("Camera")) //if press C key
         {
-            if(CamMode==1)
+            if(CamMode==1) // Cam mode = 1
             {
-                CamMode = 0;
+                CamMode = 0; // make CamMode = 0
             }
-            else
+            else // if not
             {
-                CamMode = 1;
+                CamMode = 1; // make CamMode = 1
             }
             StartCoroutine(CamChange());
         }
@@ -37,8 +29,8 @@ public class CameraChange : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         if (CamMode==0)
         {
-            ThirdCam.SetActive(true);
-            FirstCam.SetActive(false);
+            ThirdCam.SetActive(true); //set active third cam true
+            FirstCam.SetActive(false); //set active first cam false
         }
         if(CamMode==1)
         {

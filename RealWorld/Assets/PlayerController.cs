@@ -41,16 +41,16 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask))
             {
-                Speed = Rush;
+                Speed = Rush; //rush
             }
         }
         else
         {
-            Speed = 5; //burayi düzeltecegim.
+            Speed = 5; 
         }
 
         //holding
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) // if pressed E
         {
             if (heldObj == null)
             {
@@ -75,11 +75,11 @@ public class PlayerController : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
         PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) //if pressed space
         {
             if(Physics.CheckSphere(FeetTransform.position,0.1f, FloorMask)) //check player if on the floor
             {
-                PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
+                PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse); // jump
             }
         }
     }
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     //pick up objects //
     void MoveObject()
     {
-        if (Vector3.Distance(heldObj.transform.position, holdParent.position) > 0.1f)
+        if (Vector3.Distance(heldObj.transform.position, holdParent.position) > 0.1f) //checkt the distance of object
         {
             Vector3 moveDirection = (holdParent.position - heldObj.transform.position);
             heldObj.GetComponent<Rigidbody>().AddForce(moveDirection * moveForce);
@@ -103,23 +103,23 @@ public class PlayerController : MonoBehaviour
 
     void PickupObject(GameObject pickObj)
     {
-        if (pickObj.GetComponent<Rigidbody>())
+        if (pickObj.GetComponent<Rigidbody>()) //if object have rigid body
         {
-            Rigidbody objRig = pickObj.GetComponent<Rigidbody>();
+            Rigidbody objRig = pickObj.GetComponent<Rigidbody>(); 
             objRig.useGravity = false;
             objRig.drag = 10;
 
-            objRig.transform.parent = holdParent;
+            objRig.transform.parent = holdParent; //hold object
             heldObj = pickObj;
         }
     }
-    void DropObject()
+    void DropObject() //Drop object
     {
         Rigidbody heldRig = heldObj.GetComponent<Rigidbody>();
         heldRig.useGravity = true;
         heldRig.drag = 1;
 
-        heldObj.transform.parent = null;
+        heldObj.transform.parent = null; //clear held object
         heldObj = null;
     }
 }
